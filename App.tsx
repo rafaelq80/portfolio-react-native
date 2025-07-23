@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StatusBar } from 'expo-status-bar'
+import { Platform, View, StyleSheet } from 'react-native'
+import Home from './src/screens/home/Home'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	return (
+		<>
+			{/* Fundo branco abaixo da status bar */}
+			{Platform.OS === 'android' && <View style={styles.statusBarBackground} />}
+
+			{/* Ícones escuros */}
+			<StatusBar style="dark" translucent />
+
+			<Home />
+		</>
+	)
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	statusBarBackground: {
+		height: 24, // ou use Constants.statusBarHeight se quiser ser mais preciso
+		backgroundColor: '#ffffff',
+	},
+})
